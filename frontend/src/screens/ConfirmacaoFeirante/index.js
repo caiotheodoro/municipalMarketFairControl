@@ -3,7 +3,8 @@ import React, { PureComponent } from 'react';
 import {
     Row, Form, Steps,
     Modal, Button,
-    Select,
+    Select, 
+    Alert,
 } from 'antd';
 import moment from 'moment-timezone';
 import * as feiraAPI from '../../api/feira';
@@ -270,6 +271,18 @@ class ConfirmacaoFeirante extends PureComponent {
             current, visible,
         } = this.state;
 
+        if (feiraAtual.data == undefined) {
+            return (
+              <ContentComponent>
+                <Alert
+                  message="Aviso"
+                  description="Não há feiras cadastradas para esta semana."
+                  type="info"
+                  showIcon
+                />
+              </ContentComponent>
+            );
+          } else {       
         return (
             <ContentComponent
                 loading={loading}
@@ -296,7 +309,8 @@ class ConfirmacaoFeirante extends PureComponent {
                     <img src={`${process.env.REACT_APP_HOST}/image/${feiraAtual.evento_image_url}`} alt="evento" />
                 </Modal>
             </ContentComponent>
-        );
+            );
+        }
     }
 
 }
