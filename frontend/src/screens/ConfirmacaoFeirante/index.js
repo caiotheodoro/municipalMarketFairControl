@@ -94,6 +94,19 @@ class ConfirmacaoFeirante extends PureComponent {
         const { selectedPeriodo } = this.state;
         return participaAPI.setPeriodo(selectedPeriodo)
             .then(response => {
+        
+           /*if( faturamento._id.data == undefined) {    //_id do feirante por metodo Post
+                            return (
+              <ContentComponent>
+                <Alert
+                  message="Aviso"
+                  description="É preciso submeter a fatura da feira anterior para confirmar presença em outra feira."
+                  type="info"
+                  showIcon
+                />
+              </ContentComponent>
+        );
+        }*/
                 this.setState({ current: 1, selectedPeriodo: null });
             }).catch(ex => {
                 console.error(ex);
